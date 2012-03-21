@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}欢迎来到师生教学交互系统{% endblock %}
+{% block head %}欢迎来到师生教学交互系统{% endblock %}
+{% block external %}
+  <link rel="alternate" type="application/rss+xml"
+	title="Django Bookmarks | Recent Bookmarks"
+	href="/feeds/recent/" />
+{% endblock %}
+{% block content %}
+  {% if user.username %}
+    <p>欢迎 {{ user.username }}!
+      Here you can store and share bookmarks!</p>
+  {% else %}
+    <p>欢迎来到师生教学交互系统!
+      你需要首先<a href="/login/">登录</a>，
+      然后才可以进行下一步操作。</p>
+  {% endif %}
+{% endblock %}    
