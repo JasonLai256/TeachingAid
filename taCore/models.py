@@ -8,26 +8,26 @@ class Degree(models.Model):
     name = models.CharField(max_length=40)
 
     def __unicode__(self):
-        return "Degree: ".format(self.name)
+        return "Degree: {0}".format(self.id)
 
 class College(models.Model):
     name = models.CharField(max_length=60)
 
     def __unicode__(self):
-        return "College: ".format(self.name)
+        return "College: {0}".format(self.id)
 
 class Speciality(models.Model):
     name = models.CharField(max_length=60)
     college = models.ForeignKey(College)
 
     def __unicode__(self):
-        return "Speciality: ".format(self.name)
+        return "Speciality: {0}".format(self.id)
 
 class Class(models.Model):
     name = models.CharField(max_length=60)
 
     def __unicode__(self):
-        return "Class: ".format(self.name)
+        return "Class: {0}".format(self.id)
 
 class Teacher(models.Model):
     user = models.ForeignKey(User)
@@ -37,19 +37,18 @@ class Teacher(models.Model):
     leading_class = models.ForeignKey(Class)
 
     def __unicode__(self):
-        return "teacher - ", self.user
+        return "teacher - {0}", self.user
 
 
 class Student(models.Model):
     user = models.ForeignKey(User)
-    stuid = models.CharField(max_length=20)
     degree = models.ForeignKey(Degree)
     college = models.ForeignKey(College)
     speciality = models.ForeignKey(Speciality)
     stuclass = models.ForeignKey(Class)
 
     def __unicode__(self):
-        return "Student - ", self.user
+        return "Student - {0}", self.user
 
 class Course(models.Model):
     name = models.CharField(max_length=80)
@@ -60,7 +59,7 @@ class Course(models.Model):
     college = models.ForeignKey(College)
 
     def __unicode__(self):
-        return "Course: ".format(self.name)
+        return "Course: {0}".format(self.id)
     
 class Classroom(models.Model):
     name = models.CharField(max_length=50)
@@ -71,6 +70,6 @@ class Classroom(models.Model):
     courses = models.ManyToManyField(Course)
 
     def __unicode__(self):
-        return "Classroom: ".format(self.name)
+        return "Classroom: {0}".format(self.id)
     
 

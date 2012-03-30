@@ -31,3 +31,35 @@ def main_page(request):
     return render_to_response('taCore/main.html')
 
 
+@login_required
+def course_page(request, course_name):
+    pass
+
+
+@login_required
+def student_page(request, stuid):
+    student = get_object_or_404(User, username=stuid)
+    stuinfo = student.student_set.all()[0]
+    courses = stuinfo.course_set.all()
+    
+    variables = RequestContext(request, {
+            'username': student.first_name,
+            'stuid': student.username,
+            'courses': courses,
+            'info': stuinfo
+            })
+    return render_to_response('taCore/student_page.html', variables)
+
+
+@login_required
+def teather_page(request, username):
+    teather = get_object_or_404(User, username=username)
+    tchinfo = teather.teacher_set.all()[0]
+    class_info = tchinfo.leading_class
+
+    variables = RequestContext(request, {
+            'username': teather.first_name,
+            'info': tchinfo,
+            })
+    return render_to_response('taCore/teacher_page.html', variables)
+

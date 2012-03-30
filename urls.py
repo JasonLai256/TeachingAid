@@ -23,4 +23,6 @@ urlpatterns = patterns('',
     
     url(r'^login/$', 'django.contrib.auth.views.login'),
     url(r'^logout/$', 'taCore.views.logout_page'),
+
+    url(r'^knowledge/', include('knowledge.urls')),
 )
