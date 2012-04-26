@@ -63,3 +63,32 @@ def teather_page(request, username):
             })
     return render_to_response('taCore/teacher_page.html', variables)
 
+def teach_aid(request, coursename):
+    course = get_object_or_404(Course, name=coursename)
+    students = []
+    for cls in course.classes.all():
+        for stu in cls.student_set.all():
+            students.append(stu)
+    appraisals = []
+    for stu in students:
+        appra = get_object_or_404(Appraisal, student=stu)
+        comments = [cmt for cmt in appra.comment.all()]
+        res = {
+            'stu_name': stu.user.firstname,
+            'appr_counter': appra.appr_counter,
+            'excellence_counter': appra.excellence_counter,
+            'good_counter': appra.good_counter,
+            'bad_counter': appra.bad_counter,
+            'last_appr': appra.last_appr,
+        }
+        appraisals.append(res)
+
+    variables = RequestContext（request, {
+            'appraisals': appraisals,
+    })
+    return render_to_response('taCore/teach_aid.html', variables)
+
+def appraisal_poll(request):
+    poll = request.POST['appraisal']
+    appra = App
+    

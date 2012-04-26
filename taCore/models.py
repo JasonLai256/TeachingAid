@@ -31,29 +31,36 @@ class Class(models.Model):
 
 class Teacher(models.Model):
     user = models.ForeignKey(User)
+    # photo = models.ImageField(upload_to='site_media/image',
+    #                           height_field=200,
+    #                           width_field=200,
+    #                           max_length=100000)
     title = models.CharField(max_length=50)
     college = models.ForeignKey(College)
     descript = models.CharField(max_length=1000)
     leading_class = models.ForeignKey(Class)
 
     def __unicode__(self):
-        return "teacher - {0}", self.user
+        return "teacher - {0}".format(self.id)
 
 
 class Student(models.Model):
     user = models.ForeignKey(User)
+    # photo = models.ImageField(upload_to='site_media/image',
+    #                           height_field=200,
+    #                           width_field=200,
+    #                           max_length=100000)
     degree = models.ForeignKey(Degree)
     college = models.ForeignKey(College)
     speciality = models.ForeignKey(Speciality)
     stuclass = models.ForeignKey(Class)
 
     def __unicode__(self):
-        return "Student - {0}", self.user
+        return "Student - {0}".format(self.id)
 
 class Course(models.Model):
     name = models.CharField(max_length=80)
     teacher = models.ForeignKey(Teacher)
-    students = models.ManyToManyField(Student)
     classes = models.ManyToManyField(Class)
     speciality = models.ForeignKey(Speciality)
     college = models.ForeignKey(College)
@@ -71,5 +78,17 @@ class Classroom(models.Model):
 
     def __unicode__(self):
         return "Classroom: {0}".format(self.id)
-    
 
+
+class Comment(models.Model):
+    comment = models.CharField(max_length=280)
+    
+class Appraisal(models.Model):
+    course = models.ForeignKey(Course)
+    student = models.ForeignKey(Student)
+    comment = models.ForeignKey(Comment)
+    appr_counter = models.PositiveSmallIntegerField()
+    excellence_counter = models.PositiveSmallIntegerField()
+    good_counter = models.PositiveSmallIntegerField()
+    bad_counter = models.PositiveSmallIntegerField()
+    last_appr = models.CharField(max_length=12)
