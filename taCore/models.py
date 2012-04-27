@@ -84,6 +84,7 @@ class Comment(models.Model):
     comment = models.CharField(max_length=280)
     
 class Appraisal(models.Model):
+    slug = model.SlugField()
     course = models.ForeignKey(Course)
     student = models.ForeignKey(Student)
     comment = models.ForeignKey(Comment)

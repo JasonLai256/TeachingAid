@@ -63,6 +63,8 @@ def teather_page(request, username):
             })
     return render_to_response('taCore/teacher_page.html', variables)
 
+
+@login_required
 def teach_aid(request, coursename):
     course = get_object_or_404(Course, name=coursename)
     students = []
@@ -80,6 +82,7 @@ def teach_aid(request, coursename):
             'good_counter': appra.good_counter,
             'bad_counter': appra.bad_counter,
             'last_appr': appra.last_appr,
+            'slug': appra.slug,
         }
         appraisals.append(res)
 
@@ -88,7 +91,29 @@ def teach_aid(request, coursename):
     })
     return render_to_response('taCore/teach_aid.html', variables)
 
-def appraisal_poll(request):
+@login_required
+def appraisal_poll(request, slug):
     poll = request.POST['appraisal']
-    appra = App
+    appra = get_object_or_404(Appraisal, slug=slug)
+    if poll == 'excellence':
+        appra.excellence_counter += 1
+        appra.last_appr = 'excellence'
+    elif poll == 'good':
+        appra.good_counter += 1
+        appra.last_appr = 'good'
+    elif poll == 'bad':
+        appra.bad_counter += 1
+        appra.last_appr = 'bad'
+    else:
+        pass
+
+    appra.appr_counter += 1
+
+    return redirect_to('')
+
+@login_required    
+def appraisal_comment(request, slug):
+    cmt = request.POST['comment']
+    cmt = Comment(comment=cmt)
+    appra = get_object_or_404(Appraisal, slug=slug)
     
