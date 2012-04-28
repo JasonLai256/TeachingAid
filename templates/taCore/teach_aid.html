@@ -1,0 +1,51 @@
+{% block content %}
+
+  {% for i in range(amount) %}
+    {% if (i % 4) == 0 %}
+      <div class="row">
+        {% for appra in appraisals[i:i+4] %}
+          <div class="span3">
+	    <div class="hero-unit">
+	      <p>
+		<span class="label label-info">学生：</span>
+		appra.stu_name
+	      </p>
+	      <p>
+		<span class="label label-info">评价次数：</span>
+		appra.appr_counter
+	      </p>
+	      <p>
+	        <span class="label label-info">优秀：</span>
+		appra.excellence_counter
+	      </p>
+	      <p>
+		<span class="label label-info">良好:</span>
+		appra.good_counter
+	      </p>
+	      <p>
+		<span class="label label-info">较差：</span>
+		appra.bad_counter
+	      </p>
+	      <p>
+		<span class="label label-info">上一次评价：</span>
+		appra.last_appr
+	      </p>
+	      <p>
+		<a class="btn btn-primary btn-small" href="">
+		  点评
+		</a>
+		<a class="btn btn-primary btn-small" href="">
+		  添加评价
+		</a>
+		<a class="btn btn-info btn-small" href="">
+		  查看评价
+		</a>
+	      </p>
+	    </div>
+	  </div>
+	{% endfor %}
+      </div>
+    {% endif %}
+  {% endfor %}      
+
+{% endblock %}    

@@ -88,6 +88,7 @@ def teach_aid(request, coursename):
 
     variables = RequestContext（request, {
             'appraisals': appraisals,
+            'amount': len(appraisals),
     })
     return render_to_response('taCore/teach_aid.html', variables)
 
