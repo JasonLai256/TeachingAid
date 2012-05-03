@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+
+import os
 from django.conf.urls.defaults import patterns, include, url
 from django.views.generic import RedirectView
 
@@ -5,6 +8,10 @@ from django.views.generic import RedirectView
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 admin.autodiscover()
+
+site_media = os.path.join(
+    os.path.dirname(__file__), 'site_media'
+)
 
 urlpatterns = patterns('',
     # Examples:
@@ -25,4 +32,7 @@ urlpatterns = patterns('',
     url(r'^logout/$', 'taCore.views.logout_page'),
 
     url(r'^knowledge/', include('knowledge.urls')),
+
+    url(r'^site_media/(?P<path>.*)$', 'django.views.static.serve',
+          {'document_root': site_media}),
 )
