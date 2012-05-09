@@ -78,18 +78,25 @@ class Classroom(models.Model):
 
     def __unicode__(self):
         return "Classroom: {0}".format(self.id)
+    
+class Appraisal(models.Model):
+    course = models.ForeignKey(Course)
+    student = models.ForeignKey(Student)
+    appr_counter = models.PositiveSmallIntegerField(default=0)
+    excellence_counter = models.PositiveSmallIntegerField(default=0)
+    good_counter = models.PositiveSmallIntegerField(default=0)
+    bad_counter = models.PositiveSmallIntegerField(default=0)
+    last_appr = models.CharField(max_length=12, default=None)
+    slug = models.CharField(max_length=50)
+
+    def __unicode__(self):
+        return "Appraisal: {0}".format(self.id)
 
 
 class Comment(models.Model):
     comment = models.CharField(max_length=280)
-    
-class Appraisal(models.Model):
-    slug = models.SlugField()
-    course = models.ForeignKey(Course)
-    student = models.ForeignKey(Student)
-    comment = models.ForeignKey(Comment)
-    appr_counter = models.PositiveSmallIntegerField()
-    excellence_counter = models.PositiveSmallIntegerField()
-    good_counter = models.PositiveSmallIntegerField()
-    bad_counter = models.PositiveSmallIntegerField()
-    last_appr = models.CharField(max_length=12)
+    appraisal = models.ForeignKey(Appraisal)
+
+    def __unicode__(self):
+        return "Comment: {0}".format(self.id)
+

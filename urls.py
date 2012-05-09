@@ -27,6 +27,7 @@ urlpatterns = patterns('',
 
     url(r'^$', 'taCore.views.index'),
     url(r'^main/$', 'taCore.views.main_page'),
+    url(r'^teach-aid/(?P<courseid>.+)$', 'taCore.views.teach_aid'),
     
     url(r'^login/$', 'django.contrib.auth.views.login'),
     url(r'^logout/$', 'taCore.views.logout_page'),

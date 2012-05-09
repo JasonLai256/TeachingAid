@@ -1,11 +1,86 @@
 {% extends "base.html" %}
-{% block title %}欢迎来到师生教学交互系统{% endblock %}
-{% block head %}欢迎来到师生教学交互系统{% endblock %}
-{% block external %}
-  <link rel="alternate" type="application/rss+xml"
-	title="Django Bookmarks | Recent Bookmarks"
-	href="/feeds/recent/" />
+{% block title %}欢迎{% endblock %}
+{% block head %}
+  <h1>{{ user.firstname }}, 欢迎来到城院师生教学交互系统</h1>
+  <section id="blank-line"></section>
 {% endblock %}
 {% block content %}
-    <p>欢迎{{ user.username }}来到师生教学交互系统!</p>
-{% endblock %}    
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span3">
+      <div class="row">
+	<div class="span2 offset1">
+      
+      <ul class="nav nav-list">
+	<li>
+	  <a href="/user_page/{{ user.username }}">
+	    <i class="icon-home"></i>
+	    我的主页
+	  </a>
+	  <a href="/user_page/{{ user.username }}">
+	    <i class="icon-home"></i>
+	    我的主页
+	  </a>
+	  <a href="/user_page/{{ user.username }}">
+	    <i class="icon-home"></i>
+	    我的主页
+	  </a>
+	  <a href="/user_page/{{ user.username }}">
+	    <i class="icon-home"></i>
+	    我的主页
+	  </a>
+	  <a href="/user_page/{{ user.username }}">
+	    <i class="icon-home"></i>
+	    我的主页
+	  </a>
+	</li>
+      </ul>
+	</div>
+      </div>
+    </div>
+
+  <div class="span9">
+  
+    <p class="lead">欢迎来到师生教学交互系统!</p>
+    <div class="span9">
+      <section>
+	<div class="row">
+	  <div class="span6">
+	    <p class="lead"><strong>系统使用说明：</strong></p>
+	    <p>CFD为了维护各教师之间的热络互动以及提升各老师的教学品质，于99学年度起推动「教师论坛交流平台」让全校教师有一个彼此交流学习的园地，平台内容包括教学策略与经验分享、新进教师专区、PBL专区、参与国内外会议心得分享、教师心声、议题探讨等主题，让各位老师针对欲探讨的方向抛出主题或疑问，借此园地解决无论教学上、观念上亦或是最近关于学术上的热门议题，欢迎各位老师踊跃参与发言。</p>
+	    <p>本系统仅提供本校专任教师和学生所使用，帐号新增统一由论坛管理员做维护。借此互动平台教师和学生间能将教学的经验与策略分享给彼此，注册后的老师和学生可拥有各式权限。</p>
+	  </div>
+	</div>
+      </section>
+
+      <section>
+	<div class="row">
+	  <p class="lead"><strong>城院师生教学交互系统使用规则：</strong></p>
+	  <dl class="dl-horizontal">
+	    <dt>第一条</dt>
+	    <dd>请勿张贴与本交互系统不相关、不雅、谩骂或人身攻击之内容，亦不得恶意冒用人名、更改人名、揭人隐私、散播未经查证的谣言或公然毁谤涉及政治、宗教或种族，或内容涉及非法的不当言论；本站有权删除任何违反讨论规则的发言，以维护所有会员共享的自由言论空间。</dd>
+	    <dt>第二条</dt>
+	    <dd>尊重知识财产权，任何文章的转贴，请经过原作者同意，并注明出处、连结或其他原作者要求的资料，以免引起著作权纠纷，若有违反事项，一切法律责任由使用者承担。</dd>
+	    <dt>第三条</dt>
+	    <dd>相同的文章内容请勿重复张贴，亦请勿张贴任何涉及商业交易行为、广告用途、私人利益宣传或私人网站连结广告等相关言论，勿滥发无意义内容。</dd>
+	    <dt>第四条</dt>
+	    <dd>交互系统使用者因为违反本声明的规定而触犯中华人民共和国法律的，一切后果自己负责，像素论坛不承担任何责任。</dd>
+	    <dt>第五条</dt>
+	    <dd>交互系统内所发文章版权归原帖作者所有，如要转载请于原帖作者联系。如未经授权擅自转载引来非议与像素论坛无关。</dd>
+	    <dt>第六条</dt>
+	    <dd>凡以任何方式登录本站或直接、间接使用交互系统资料者，视为自愿接受像素论坛声明的约束。本声明未涉及的问题参见国家有关法律法规，当本声明与国家法律法规冲突时，以国家法律法规为准。</dd>
+	    <dt>第七条</dt>
+	    <dd>注册会员通过任何手段和方法针对社区进行破坏，交互系统有权对其行为作出处理。并保留进一步追求其责任的权利。<dd>
+	  </dl>
+	</div>
+      </section>
+
+    </div>
+  </div>
+  </div>
+</div>
+
+  
+    
+    
+p{% endblock %}    

@@ -1,51 +1,161 @@
-{% block content %}
+{% extends "base.html" %}
 
-  {% for i in range(amount) %}
-    {% if (i % 4) == 0 %}
-      <div class="row">
-        {% for appra in appraisals[i:i+4] %}
-          <div class="span3">
-	    <div class="hero-unit">
-	      <p>
-		<span class="label label-info">学生：</span>
-		appra.stu_name
-	      </p>
-	      <p>
-		<span class="label label-info">评价次数：</span>
-		appra.appr_counter
-	      </p>
-	      <p>
-	        <span class="label label-info">优秀：</span>
-		appra.excellence_counter
-	      </p>
-	      <p>
-		<span class="label label-info">良好:</span>
-		appra.good_counter
-	      </p>
-	      <p>
-		<span class="label label-info">较差：</span>
-		appra.bad_counter
-	      </p>
-	      <p>
-		<span class="label label-info">上一次评价：</span>
-		appra.last_appr
-	      </p>
-	      <p>
-		<a class="btn btn-primary btn-small" href="">
-		  点评
-		</a>
-		<a class="btn btn-primary btn-small" href="">
-		  添加评价
-		</a>
-		<a class="btn btn-info btn-small" href="">
-		  查看评价
-		</a>
-	      </p>
+{% block title %}使用{% endblock %}
+
+{% block head %}
+  <h1>欢迎使用城院师生教学交互系统</h1>
+  <p class="lead">Dozens of reusable components are built into Bootstrap to provide navigation, alerts, popovers, and much more.</p>
+  <div class="subnav">
+    <ul class="nav nav-pills">
+      <li>
+	<a><strong>按条件排序:</strong></a>
+      </li>
+      <li class="dropdown">
+	<a class="dropdown-toggle" href="#" data-toggle="dropdown">
+	  Navigation
+	  <b class="caret"></b>
+	</a>
+
+	<ul class="dropdown-menu">
+	  <li class="">
+	    <a href="#navs">Nav, tabs, pills</a>
+	  </li>
+	  <li class="">
+	    <a href="#navbar">Navbar</a>
+	  </li>
+	  <li class="">
+	    <a href="#breadcrumbs">Breadcrumbs</a>
+	  </li>
+	  <li class="">
+	    <a href="#pagination">Pagination</a>
+	  </li>
+	</ul>
+      </li>
+      <li>
+	<a href="?query=name">名字排序</a>
+      </li>
+      <li>
+	<a href="{{ courseid }}">学号排序</a>
+      </li>
+      <li>
+	<a href="#labels">Labels</a>
+      </li>
+      <li>
+	<a><strong>按条件点名:</strong></a>
+      </li>
+      <li class="dropdown">
+	<a class="dropdown-toggle" href="#" data-toggle="dropdown">
+	  随机选取
+	  <b class="caret"></b>
+	</a>
+
+	<ul class="dropdown-menu">
+	  <li class="">
+	    <a href="#navs">1人</a>
+	  </li>
+	  <li class="">
+	    <a href="#navbar">2人</a>
+	  </li>
+	  <li class="">
+	    <a href="#breadcrumbs">3人</a>
+	  </li>
+	  <li class="">
+	    <a href="#pagination">4人</a>
+	  </li>
+	</ul>
+      </li>
+    </ul>
+  </div>
+
+  <section id="blank-line"></section>
+{% endblock %}
+
+{% block content %}
+  
+  <div>
+    <p class="lead">{{ coursename }} 课程共有 {{ amount }} 人。</p>
+    {% for appra in appraisals %}
+      <div class="span3">
+	<div class="hero-unit">
+	  <p>
+	    <span class="label">姓名：</span>
+	    {{ appra.stu_name }}
+	  </p>
+	  <p>
+	    <span class="label">学号：</span>
+	    {{ appra.stu_id }}
+	  </p>
+	  <p>
+	    <span class="label">评价次数：</span>
+	    {{ appra.appr_counter }}
+	  </p>
+	  <p>
+	    <span class="label">上一次评价：</span>
+	    {{ appra.last_appr }}
+	  </p>
+	  <p>
+	    <div id="appraise" class="modal hide fade" style="display: none;">
+	      <div class="modal-header">
+		<button class="close" data-dismiss="modal">×</button>
+		<h3>点评</h3>
+	      </div>
+	      <div class="modal-body">
+		<h4>Text in a modal</h4>
+		<p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem.</p>
+		<h4>Popover in a modal</h4>
+		<p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
+	      </div>
+	      <div class="modal-footer">
+		<a class="btn" data-dismiss="modal" href="#">关闭</a>
+		<a class="btn btn-primary" href="#">提交评价</a>
+	      </div>
 	    </div>
-	  </div>
-	{% endfor %}
+	    <a class="btn btn-primary" href="#appraise" data-toggle="modal">
+	      点评
+	    </a>
+
+	    <div id="make-comment" class="modal hide fade" style="display: none;">
+	      <div class="modal-header">
+		<button class="close" data-dismiss="modal">×</button>
+		<h3>添加评价</h3>
+	      </div>
+	      <div class="modal-body">
+		<h4>Text in a modal</h4>
+		<p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem.</p>
+		<h4>Popover in a modal</h4>
+		<p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
+	      </div>
+	      <div class="modal-footer">
+		<a class="btn" data-dismiss="modal" href="#">关闭</a>
+		<a class="btn btn-primary" href="#">提交评价</a>
+	      </div>
+	    </div>
+	    <a class="btn btn-primary" href="#make-comment" data-toggle="modal">
+	      添加评价
+	    </a>
+
+	    <div id="lookup-comments" class="modal hide fade" style="display: none;">
+	      <div class="modal-header">
+		<button class="close" data-dismiss="modal">×</button>
+		<h3>添加评价</h3>
+	      </div>
+	      <div class="modal-body">
+		<h4>Text in a modal</h4>
+		<p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem.</p>
+		<h4>Popover in a modal</h4>
+		<p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
+	      </div>
+	      <div class="modal-footer">
+		<a class="btn" data-dismiss="modal" href="#">关闭</a>
+	      </div>
+	    </div>
+	    <a class="btn btn-info" href="#lookup-comments" data-toggle="modal">
+	      查看具体评价
+	    </a>
+	  </p>
+	</div>
       </div>
-    {% endif %}
-  {% endfor %}      
+    {% endfor %}
+  </div>
 
 {% endblock %}    
