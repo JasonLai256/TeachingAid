@@ -40,6 +40,10 @@
       <li>
 	<a href="#labels">Labels</a>
       </li>
+    </ul>
+  </div>
+  <div class="subnav">
+    <ul class="nav nav-pills">
       <li>
 	<a><strong>按条件点名:</strong></a>
       </li>
@@ -91,66 +95,115 @@
 	  </p>
 	  <p>
 	    <span class="label">上一次评价：</span>
-	    {{ appra.last_appr }}
+	    {% if appra.last_appr == "excellence" %}
+	      优秀
+	    {% endif %}
+	    {% if appra.last_appr == "good" %}
+	      良好
+	    {% endif %}
+	    {% if appra.last_appr == "bad" %}
+	      一般
+	    {% endif %}
+	    {% if appra.last_appr == "absent" %}
+	      旷课
+	    {% endif %}
+	    {% if appra.last_appr == "leave" %}
+	      请假
+	    {% endif %}
+	    {% if appra.last_appr == "come_late" %}
+	      迟到
+	    {% endif %}
+	    {% if not appra.last_appr %}
+	      无
+	    {% endif %}
 	  </p>
 	  <p>
-	    <div id="appraise" class="modal hide fade" style="display: none;">
+	    <div id="appraise{{ appra.stu_id }}" class="modal hide fade" style="display: none;">
 	      <div class="modal-header">
 		<button class="close" data-dismiss="modal">×</button>
-		<h3>点评</h3>
+		<h3>对 {{ appra.stu_name }} 进行点评</h3>
 	      </div>
 	      <div class="modal-body">
-		<h4>Text in a modal</h4>
-		<p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem.</p>
-		<h4>Popover in a modal</h4>
-		<p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
-	      </div>
-	      <div class="modal-footer">
-		<a class="btn" data-dismiss="modal" href="#">关闭</a>
-		<a class="btn btn-primary" href="#">提交评价</a>
+		<form class="form-horizontal" action="../appraisal-poll/{{ appra.slug }}" method="post" enctype="multipart/form-data">
+		  {% csrf_token %}
+		  <fieldset>
+		    <div class="control-group">
+		      <label class="control-label">简单评价</label>
+		      <div class="controls">
+			<label class="radio">
+			  <input id="optionsRadios1" type="radio" checked="" value="excellence" name="appraisal">
+			  优秀
+			</label>
+			<label class="radio">
+			  <input id="optionsRadios2" type="radio" value="good" name="appraisal">
+			  良好
+			</label>
+			<label class="radio">
+			  <input id="optionsRadios3" type="radio" value="bad" name="appraisal">
+			  一般
+			</label>
+			<label class="radio">
+			  <input id="optionsRadios3" type="radio" value="absent" name="appraisal">
+			  旷课
+			</label>
+			<label class="radio">
+			  <input id="optionsRadios3" type="radio" value="leave" name="appraisal">
+			  请假
+			</label>
+			<label class="radio">
+			  <input id="optionsRadios3" type="radio" value="come_late" name="appraisal">
+			  迟到
+			</label>
+		      </div>
+		    </div>
+		    <div class="control-group">
+		      <label class="control-label" for="textarea">评论</label>
+		      <div class="controls">
+			<input name="comment" id="textarea" class="input-xlarge" type="text">
+		      </div>
+		    </div>
+		    <div class="form-actions">
+		      <button class="btn btn-primary" type="submit">提交评论</button>
+		      <a class="btn" data-dismiss="modal" href="#">取消</a>
+		    </div>
+		  </fieldset>
+		</form>
 	      </div>
 	    </div>
-	    <a class="btn btn-primary" href="#appraise" data-toggle="modal">
-	      点评
+	    <a class="btn btn-primary" href="#appraise{{ appra.stu_id }}" data-toggle="modal">
+	      进行点评
 	    </a>
+	  </p>
 
-	    <div id="make-comment" class="modal hide fade" style="display: none;">
+	  <p>
+	    <div id="lookup-comments{{ appra.stu_id }}" class="modal hide fade" style="display: none;">
 	      <div class="modal-header">
 		<button class="close" data-dismiss="modal">×</button>
-		<h3>添加评价</h3>
+		<h3>{{ appra.stu_name }} 过往评价</h3>
 	      </div>
 	      <div class="modal-body">
-		<h4>Text in a modal</h4>
-		<p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem.</p>
-		<h4>Popover in a modal</h4>
+		<h4>评价汇总：</h4>
 		<p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
-	      </div>
-	      <div class="modal-footer">
-		<a class="btn" data-dismiss="modal" href="#">关闭</a>
-		<a class="btn btn-primary" href="#">提交评价</a>
-	      </div>
-	    </div>
-	    <a class="btn btn-primary" href="#make-comment" data-toggle="modal">
-	      添加评价
-	    </a>
-
-	    <div id="lookup-comments" class="modal hide fade" style="display: none;">
-	      <div class="modal-header">
-		<button class="close" data-dismiss="modal">×</button>
-		<h3>添加评价</h3>
-	      </div>
-	      <div class="modal-body">
-		<h4>Text in a modal</h4>
-		<p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem.</p>
-		<h4>Popover in a modal</h4>
-		<p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
+		{% if appra.comments %}
+  		  <h4>过往评论：</h4> 
+		  {% for comment in appra.comments %}
+		    <div class="legend-unit">
+		      <p>{{ comment.comment }}</p>
+		      <span class="label">评价于：</span>{{ comment.datetime }}
+		    </div>
+		  {% endfor %}
+		{% else %}
+		  <div class="legend-unit">
+		    <p><h4>暂时还没有对该同学的评论。</h4></p>
+		  </div>
+		{% endif %}
 	      </div>
 	      <div class="modal-footer">
 		<a class="btn" data-dismiss="modal" href="#">关闭</a>
 	      </div>
 	    </div>
-	    <a class="btn btn-info" href="#lookup-comments" data-toggle="modal">
-	      查看具体评价
+	    <a class="btn btn-info" href="#lookup-comments{{ appra.stu_id }}" data-toggle="modal">
+	      查看过往评价
 	    </a>
 	  </p>
 	</div>

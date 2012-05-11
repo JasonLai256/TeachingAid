@@ -86,6 +86,12 @@ class Appraisal(models.Model):
     excellence_counter = models.PositiveSmallIntegerField(default=0)
     good_counter = models.PositiveSmallIntegerField(default=0)
     bad_counter = models.PositiveSmallIntegerField(default=0)
+    # 旷课
+    absent_counter = models.PositiveSmallIntegerField(default=0)
+    # 请假
+    leave_counter = models.PositiveSmallIntegerField(default=0)
+    # 迟到
+    come_late_counter = models.PositiveSmallIntegerField(default=0)
     last_appr = models.CharField(max_length=12, default=None)
     slug = models.CharField(max_length=50)
 
@@ -95,6 +101,7 @@ class Appraisal(models.Model):
 
 class Comment(models.Model):
     comment = models.CharField(max_length=280)
+    datetime = models.DateTimeField(auto_now_add=True)
     appraisal = models.ForeignKey(Appraisal)
 
     def __unicode__(self):
