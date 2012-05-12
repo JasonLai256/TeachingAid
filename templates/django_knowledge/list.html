@@ -4,13 +4,13 @@
 
 {% load knowledge_tags %}
 
-{% block title %}Showing {{ questions.paginator.count }} results{% if search %} for {{ search }}{% endif %}{% if category %} in {{ category.title }} category{% endif %}{% endblock title %}
+{% block title %}搜索{% endblock title %}
 
 {% block knowledge_widgets %}
 
 <div class="dk-widget">
   {# dunno how to do translation on this nasty block... #}
-  <h3>Showing {{ counter }} results{% if search %} for <em>{{ search }}</em>{% endif %}{% if category %} in <em>{{ category.title }}</em> category{% endif %}:</h3>
+  <h3>搜索结果。{% if search %} 对于 <em>{{ search }}</em>{% endif %}{% if category %} 在 <em>{{ category.title }}</em> category{% endif %}:</h3>
   <hr />
   <ol class="question-list">
     {% for question in questions.object_list %}
@@ -19,7 +19,7 @@
   </ol>
 
   {% if not questions.paginator.count %}
-    <p class="center"><em>{% trans "No results found." %}</em></p>
+    <p class="center"><em>{% trans "没有匹配的结果。" %}</em></p>
   {% endif %}
   
   <hr class="light"/>
@@ -30,7 +30,7 @@
       <a href="?{% page_query request questions.previous_page_number %}">&larr; {% trans "previous" %}</a>
     {% endif %}
 
-    &nbsp; {% blocktrans with number=questions.number pages=questions.paginator.num_pages %}page {{ number }} of {{ page }}{% endblocktrans %} &nbsp;
+    &nbsp; {% blocktrans with number=questions.number pages=questions.paginator.num_pages %}{{ number }} / {{ page }}{% endblocktrans %} &nbsp;
 
     {% if questions.has_next %}
       <a href="?{% page_query request questions.next_page_number %}">{% trans "next" %} &rarr;</a>
@@ -41,12 +41,12 @@
 
 {% if form and paginator.count < 5 %}
   <div class="dk-widget">
-    <h3>{% trans "Ask a Question" %}</h3>
+    <h3>{% trans "提问" %}</h3>
     <hr />
 
     {% url knowledge_ask as form_url %}
 
-    {% include "django_knowledge/form.html" with submit_value="Submit this support request" submit_and="and we'll get back to you as soon as possible." submit_url=form_url %}
+    {% include "django_knowledge/form.html" with submit_value="提交请求" submit_and="（你应该能很快得到反馈）" submit_url=form_url %}
   </div>
 {% endif %}
 

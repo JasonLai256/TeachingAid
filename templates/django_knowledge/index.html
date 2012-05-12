@@ -2,12 +2,12 @@
 
 {% load i18n %}
 
-{% block title %}{% trans "Support" %}{% endblock title %}
+{% block title %}{% trans "知识堂" %}{% endblock title %}
 
 {% block knowledge_widgets %}
 
 <div class="dk-widget">
-  <h3>{% blocktrans with count=questions|length %}Top {{ count }} Questions{% endblocktrans %}</h3>
+  <h3>{% blocktrans with count=questions|length %}最近 {{ count }} 个问题{% endblocktrans %}</h3>
   <hr />
   <ol class="question-list">
     {% for question in questions %}

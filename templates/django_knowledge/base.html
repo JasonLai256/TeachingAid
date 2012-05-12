@@ -4,17 +4,43 @@
 
   <meta charset="utf-8">
   
-  <title>{% block title %}{% endblock title %} | Support Center</title>
+  <title>{% block title %}{% endblock title %} | 城院知识堂</title>
   
   <link rel="stylesheet" href="{{ STATIC_URL }}knowledge/css/reset.css">
   <link rel="stylesheet" href="{{ STATIC_URL }}knowledge/css/main.css">
+  <link rel="stylesheet" href="{{ STATIC_URL }}knowledge/css/bootstrap.css">
+  <link rel="stylesheet" href="{{ STATIC_URL }}knowledge/css/docs.css">
 
 </head>
 
-<body>
+<body data-offset="50" data-target=".subnav" data-spy="scroll">
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+	<a class="brand" href="#">城院师生教学交互系统</a>
+	<ul class="nav">
+	  <li class="active">
+	    <a href="/">主页</a>
+	  </li>
+	  <li><a href="/popular/">popular</a></li>
+	  {% if user.is_authenticated %}
+	    <li><a href="/save/">submit</a></li>
+	    <li><a href="/search/">搜索</a></li>
+	    <li><a href="/user/{{ user.username }}/">
+		{{ user.username }}</a></li>
+	    <li><a href="/logout">退出登录</a></li>
+	    <li></li>
+	  {% else %}
+	    <li><a href="/login/">登录</a></li>
+	    <li><a href="/register/">注册</a></li>
+	  {% endif %}
+	</ul>
+      </div>
+    </div>
+  </div>
 
 <div class="wrapper">
-  
+
   {% block knowledge_inner %}
   {% endblock knowledge_inner %}
 
