@@ -385,36 +385,36 @@
 		
 		<p>评价：</p>
 		<div class="legend-unit">
-		  <div>
+		  <span>
 		    优秀：
 		    <span class="badge badge-info">{{ appra.excellence_counter }}</span>
-		  </div>
-		  <div>
+		  </span>
+		  <span class="offset1">
 		    良好：
 		    <span class="badge badge-success">{{ appra.good_counter }}</span>
-		  </div>
-		  <div>
+		  </span>
+		  <span class="offset1">
 		    一般：
 		    <span class="badge badge-warning">{{ appra.bad_counter }}</span>
-		  </div>
+		  </span>
 		</div>
 		<p>考勤：</p>
 		<div class="legend-unit">
-		  <div>
+		  <span>
 		    旷课：
 		    <span class="badge badge-inverse">{{ appra.absent_counter }}</span>
-		  </div>
-		  <div>
+		  </span>
+		  <span class="offset1">
 		    请假：
 		    <span class="badge badge-warning">{{ appra.leave_counter }}</span>
-		  </div>
-		  <div>
+		  </span>
+		  <span class="offset1">
 		    迟到：
 		    <span class="badge">{{ appra.come_late_counter }}</span>
-		  </div>
+		  </span>
 		</div>
+		<h4>过往评论：</h4> 
 		{% if appra.comments %}
-  		  <h4>过往评论：</h4> 
 		  {% for comment in appra.comments %}
 		    <div class="legend-unit">
 		      <p>{{ comment.comment }}</p>

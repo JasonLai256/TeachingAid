@@ -10,6 +10,7 @@ from django.core.exceptions import ObjectDoesNotExist, ValidationError
 
 from taCore.forms import *
 from taCore.models import *
+from knowledge.models import Question
 
 
 
@@ -40,12 +41,9 @@ def main_page(request):
     elif user.student_set.count() != 0:
         identity = 's'
         s = Student.objects.get(user=user)
-        courses = [c for c in s.course_set.all()]
         status = {
-            'title': u'学生',
-            'stuid': student.username,
-            'courses': courses,
-            'info': stuinfo
+            'title': u'同学',
+            'stuid': s.user.username,
         }
     else:
         identity = 'm'
@@ -53,9 +51,13 @@ def main_page(request):
             'title': '',
             }
         
+    questions = Question.objects.can_view(request.user)[0:20]
+        
     variables = RequestContext(request, {
             'identity': identity,
-            'status': status
+            'status': status,
+            'questions': questions,
+            'count': len(questions),
             })
     return render_to_response('taCore/main.html', variables)
 

@@ -11,4 +11,5 @@ ALERTS_FUNCTION_PATH = getattr(settings, 'KNOWLEDGE_ALERTS_FUNCTION_PATH',
     'knowledge.signals.send_alerts')
 
 # misc
-SLUG_URLS = getattr(settings, 'KNOWLEDGE_SLUG_URLS', True)
+# SLUG_URLS = getattr(settings, 'KNOWLEDGE_SLUG_URLS', True)
+SLUG_URLS = None
