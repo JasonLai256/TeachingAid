@@ -1,7 +1,13 @@
 {% extends "base.html" %}
 {% block title %}用户登录{% endblock %}
-{% block head %}用户登录{% endblock %}
+{% block head %}
+<h1>城院师生教学交互系统 -</h1>
+<div class="span4 offset4">
+  <h1>用户登录</h1>
+</div>
+{% endblock %}
 {% block content %}
+<div class="span4 offset4">
   {% if form.errors %}
     <p>你的用户名或者你输入的密码有错。请再次输入。</p>
   {% endif %}
@@ -10,6 +16,7 @@
       <p><label for="id_username">用户名：</label>{{ form.username }}</p>
       <p><label for="id_password">密码：</label>{{ form.password }}</p>
       <input type="hidden" name="next" value="/" />
-      <input type="submit" value="登录" />
+      <input type="submit" class="btn btn-primary btn-large"  value="登录" />
     </form>
+</div>
 {% endblock %}    

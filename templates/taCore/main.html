@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block title %}欢迎{% endblock %}
 {% block head %}
-  <h1>{{ user.firstname }}, 欢迎来到城院师生教学交互系统</h1>
+  <h1>{{ user.first_name }} {{ status.title }}, 欢迎使用城院师生教学交互系统</h1>
   <section id="blank-line"></section>
 {% endblock %}
 {% block content %}
@@ -11,27 +11,27 @@
       <div class="row">
 	<div class="span2 offset1">
       
-      <ul class="nav nav-list">
+      <ul class="nav nav-list legend-unit">
 	<li>
-	  <a href="/user_page/{{ user.username }}">
+	  <a href="/user/{{ user.username }}">
 	    <i class="icon-home"></i>
 	    我的主页
 	  </a>
-	  <a href="/user_page/{{ user.username }}">
-	    <i class="icon-home"></i>
-	    我的主页
+	  <a href="/knowledge/">
+	    <i class="icon-star"></i>
+	    城院知识堂
 	  </a>
-	  <a href="/user_page/{{ user.username }}">
-	    <i class="icon-home"></i>
-	    我的主页
-	  </a>
-	  <a href="/user_page/{{ user.username }}">
-	    <i class="icon-home"></i>
-	    我的主页
-	  </a>
-	  <a href="/user_page/{{ user.username }}">
-	    <i class="icon-home"></i>
-	    我的主页
+	  {% if identity = 't' %}
+	    {% for c in status.courses %}
+	      <a href="/teach-aid/{{ c.id }}">
+		<i class="icon-book"></i>
+		课程：{{ c.name }}
+	      </a>
+	    {% endfor %}
+	  {% endif %}
+	  <a href="/logout">
+	    <i class="icon-eject"></i>
+	    退出登录
 	  </a>
 	</li>
       </ul>
@@ -41,13 +41,13 @@
 
   <div class="span9">
   
-    <p class="lead">欢迎来到师生教学交互系统!</p>
+    <p class="lead">欢迎使用师生教学交互系统!</p>
     <div class="span9">
       <section>
 	<div class="row">
 	  <div class="span6">
 	    <p class="lead"><strong>系统使用说明：</strong></p>
-	    <p>CFD为了维护各教师之间的热络互动以及提升各老师的教学品质，于99学年度起推动「教师论坛交流平台」让全校教师有一个彼此交流学习的园地，平台内容包括教学策略与经验分享、新进教师专区、PBL专区、参与国内外会议心得分享、教师心声、议题探讨等主题，让各位老师针对欲探讨的方向抛出主题或疑问，借此园地解决无论教学上、观念上亦或是最近关于学术上的热门议题，欢迎各位老师踊跃参与发言。</p>
+	    <p>城院为了维护各教师和学生之间的热络互动以及提升各老师的教学品质，「师生教学交互系统」让教师更方便的管理教堂教学，让全校教师和学生有一个彼此交流学习的园地，互动的城院知识堂平台内容包括教学策略与经验分享、新进教师专区、学生解惑、教师心声、议题探讨等主题，让各位老师和学生针对欲探讨的方向抛出主题或疑问，借此园地解决无论教学上、观念上亦或是最近关于学术上的热门议题，欢迎各位老师和学生踊跃参与发言。</p>
 	    <p>本系统仅提供本校专任教师和学生所使用，帐号新增统一由论坛管理员做维护。借此互动平台教师和学生间能将教学的经验与策略分享给彼此，注册后的老师和学生可拥有各式权限。</p>
 	  </div>
 	</div>

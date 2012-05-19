@@ -19,7 +19,6 @@ def index(request):
     else:
         return HttpResponseRedirect('/login')
 
-
 @login_required
 def logout_page(request):
     logout(request)
@@ -28,43 +27,37 @@ def logout_page(request):
 
 @login_required
 def main_page(request):
-    # shared_bookmarks = SharedBookmark.objects.order_by('-date')[:10]
-    variables = RequestContext(request, {})
-    return render_to_response('taCore/main.html', variables)
-
-
-@login_required
-def course_page(request, course_name):
-    pass
-
-
-@login_required
-def student_page(request, stuid):
-    student = get_object_or_404(User, username=stuid)
-    stuinfo = student.student_set.all()[0]
-    courses = stuinfo.course_set.all()
-    
-    variables = RequestContext(request, {
-            'username': student.first_name,
+    user = request.user
+    if user.teacher_set.count() != 0:
+        identity = 't'
+        t = Teacher.objects.get(user=user)
+        courses = [c for c in t.course_set.all()]
+        status = {
+            'title': u'老师',
+            'courses': courses,
+            'info': t.descript,
+        }
+    elif user.student_set.count() != 0:
+        identity = 's'
+        s = Student.objects.get(user=user)
+        courses = [c for c in s.course_set.all()]
+        status = {
+            'title': u'学生',
             'stuid': student.username,
             'courses': courses,
             'info': stuinfo
-            })
-    return render_to_response('taCore/student_page.html', variables)
-
-
-@login_required
-def teather_page(request, username):
-    teather = get_object_or_404(User, username=username)
-    tchinfo = teather.teacher_set.all()[0]
-    class_info = tchinfo.leading_class
-
+        }
+    else:
+        identity = 'm'
+        status = {
+            'title': '',
+            }
+        
     variables = RequestContext(request, {
-            'username': teather.first_name,
-            'info': tchinfo,
+            'identity': identity,
+            'status': status
             })
-    return render_to_response('taCore/teacher_page.html', variables)
-
+    return render_to_response('taCore/main.html', variables)
 
 @login_required
 def teach_aid(request, courseid):
@@ -126,9 +119,11 @@ def _select_apprs(appraisals, select):
     if query == 'random':
         from random import shuffle
         shuffle(appraisals)
+        ret = appraisals[:num]
     else:
-        appraisals = _make_order(appraisals, query)
-    return appraisals[:num]
+        ret = _make_order(appraisals, query)
+        
+    return ret
 
 def _make_order(appraisals, query):
     apprs = None
@@ -137,11 +132,17 @@ def _make_order(appraisals, query):
     elif query == "name":
         apprs = sorted(appraisals,key=lambda e: e['stu_name'])
     elif query == "last-excellence":
-        pass
+        apprs = [a for a in appraisals if a['last_appr'] == 'excellence']
     elif query == "last-good":
-        pass
+        apprs = [a for a in appraisals if a['last_appr'] == 'good']
     elif query == "last-bad":
-        pass
+        apprs = [a for a in appraisals if a['last_appr'] == 'bad']
+    elif query == "last-absent":
+        apprs = [a for a in appraisals if a['last_appr'] == 'absent']
+    elif query == "last-leave":
+        apprs = [a for a in appraisals if a['last_appr'] == 'leave']
+    elif query == "last-come-late":
+        apprs = [a for a in appraisals if a['last_appr'] == 'come_late']
     elif query == "most-count":
         apprs = sorted(appraisals,key=lambda e: e['appr_counter'])
         apprs.reverse()
@@ -168,10 +169,6 @@ def _make_order(appraisals, query):
     elif query == "most-comment":
         apprs = sorted(appraisals,key=lambda e: len(e['comments']))
         apprs.reverse()
-    elif query == "":
-        pass
-    elif query == "":
-        pass
     else:
         apprs = appraisals
     return apprs

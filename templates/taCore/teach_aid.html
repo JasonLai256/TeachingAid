@@ -4,14 +4,12 @@
 
 {% block head %}
   <h1>欢迎使用城院师生教学交互系统</h1>
-  <p class="lead">Dozens of reusable components are built into Bootstrap to provide navigation, alerts, popovers, and much more.</p>
+  
+  <p class="lead">用于辅助教学，同时让教师在课堂上对学生有更为正确的认识，并能更客观地对学生进行评价判断。</p>
   <div class="subnav">
     <ul class="nav nav-pills">
       <li>
 	<a><strong>按条件排序:</strong></a>
-      </li>
-      <li>
-	<a href="?query=name">名字</a>
       </li>
       <li>
 	<a href="{{ courseid }}">学号</a>
@@ -67,12 +65,6 @@
       <li>
 	<a href="?query=most-comment">评论数</a>
       </li>
-      <li>
-	<a href="">Labels</a>
-      </li>
-      <li>
-	<a href="">Labels</a>
-      </li>
     </ul>
   </div>
   <div class="subnav">
@@ -98,6 +90,42 @@
 	  </li>
 	  <li class="">
 	    <a href="?select=random-4">4人</a>
+	  </li>
+	</ul>
+      </li>
+      <li class="dropdown">
+	<a class="dropdown-toggle" href="#" data-toggle="dropdown">
+	  最近评价情况
+	  <b class="caret"></b>
+	</a>
+
+	<ul class="dropdown-menu">
+	  <li class="">
+	    <a href="?select=last-excellence-0">优秀</a>
+	  </li>
+	  <li class="">
+	    <a href="?select=last-good-0">良好</a>
+	  </li>
+	  <li class="">
+	    <a href="?select=last-bad-0">一般</a>
+	  </li>
+	</ul>
+      </li>
+            <li class="dropdown">
+	<a class="dropdown-toggle" href="#" data-toggle="dropdown">
+	  最近考勤情况
+	  <b class="caret"></b>
+	</a>
+
+	<ul class="dropdown-menu">
+	  <li class="">
+	    <a href="?select=last-absent-0">旷课</a>
+	  </li>
+	  <li class="">
+	    <a href="?select=last-come-late-0">迟到</a>
+	  </li>
+	  <li class="">
+	    <a href="?select=last-leave-0">请假</a>
 	  </li>
 	</ul>
       </li>
@@ -354,7 +382,37 @@
 	      </div>
 	      <div class="modal-body">
 		<h4>评价汇总：</h4>
-		<p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
+		
+		<p>评价：</p>
+		<div class="legend-unit">
+		  <div>
+		    优秀：
+		    <span class="badge badge-info">{{ appra.excellence_counter }}</span>
+		  </div>
+		  <div>
+		    良好：
+		    <span class="badge badge-success">{{ appra.good_counter }}</span>
+		  </div>
+		  <div>
+		    一般：
+		    <span class="badge badge-warning">{{ appra.bad_counter }}</span>
+		  </div>
+		</div>
+		<p>考勤：</p>
+		<div class="legend-unit">
+		  <div>
+		    旷课：
+		    <span class="badge badge-inverse">{{ appra.absent_counter }}</span>
+		  </div>
+		  <div>
+		    请假：
+		    <span class="badge badge-warning">{{ appra.leave_counter }}</span>
+		  </div>
+		  <div>
+		    迟到：
+		    <span class="badge">{{ appra.come_late_counter }}</span>
+		  </div>
+		</div>
 		{% if appra.comments %}
   		  <h4>过往评论：</h4> 
 		  {% for comment in appra.comments %}
