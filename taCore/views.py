@@ -8,7 +8,6 @@ from django.contrib.auth import logout
 from django.template import RequestContext
 from django.core.exceptions import ObjectDoesNotExist, ValidationError
 
-from taCore.forms import *
 from taCore.models import *
 from knowledge.models import Question
 

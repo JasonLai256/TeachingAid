@@ -34,6 +34,7 @@ urlpatterns = patterns('',
     url(r'^logout/$', 'taCore.views.logout_page'),
 
     url(r'^knowledge/', include('knowledge.urls')),
+    url(r'^i18n/', include('django.conf.urls.i18n')),
 
     url(r'^site_media/(?P<path>.*)$', 'django.views.static.serve',
           {'document_root': site_media}),

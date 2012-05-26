@@ -46,17 +46,13 @@ class KnowledgeBase(models.Model):
     user = models.ForeignKey('auth.User', blank=True,
                              null=True, db_index=True)
     alert = models.BooleanField(default=settings.ALERTS,
-        verbose_name=_('Alert'),
-        help_text=_('Check this if you want to be alerted when a new'
-                        ' response is added.'))
+        verbose_name=_('Alert'))
 
     # for anonymous posting, if permitted
     name = models.CharField(max_length=64, blank=True, null=True,
-        verbose_name=_('Name'),
-        help_text=_('Enter your first and last name.'))
+        verbose_name=_('Name'))
     email = models.EmailField(blank=True, null=True,
-        verbose_name=_('Email'),
-        help_text=_('Enter a valid email address.'))
+        verbose_name=_('Email'))
 
     class Meta:
         abstract = True
@@ -137,16 +133,13 @@ class KnowledgeBase(models.Model):
         self.switch('internal', save)
     internal.alters_data = True
 
-
 class Question(KnowledgeBase):
     is_question = True
 
     title = models.CharField(max_length=255,
-        verbose_name=_('Question'),
-        help_text=_('Enter your question or suggestion.'))
+        verbose_name=_('Question'))
     body = models.TextField(blank=True, null=True,
-        verbose_name=_('Description'),
-        help_text=_('Please offer details. Markdown enabled.'))
+        verbose_name=_('Description'))
 
     status = models.CharField(
         verbose_name=_('Status'),
@@ -248,8 +241,7 @@ class Response(KnowledgeBase):
         related_name='responses')
 
     body = models.TextField(blank=True, null=True,
-        verbose_name=_('Response'),
-        help_text=_('Please enter your response. Markdown enabled.'))
+        verbose_name=_('Response'))
     status = models.CharField(
         verbose_name=_('Status'),
         max_length=32, choices=STATUSES_EXTENDED,
