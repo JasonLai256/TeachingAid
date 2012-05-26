@@ -1,0 +1,242 @@
+# This file is distributed under the same license as the Django package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Django\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-05-26 22:33+0800\n"
+"PO-Revision-Date: 2012-05-20 14:09+0000\n"
+"Last-Translator: jason <jasonlai256@gmail.com>\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+
+#: forms.py:46 models.py:12
+msgid "Internal"
+msgstr "内部"
+
+#: models.py:10
+msgid "Public"
+msgstr "公开"
+
+#: models.py:11
+msgid "Private"
+msgstr "私人"
+
+#: models.py:17
+msgid "Inherit"
+msgstr "继承"
+
+#: models.py:33
+msgid "Category"
+msgstr "类别"
+
+#: models.py:34 templates/django_knowledge/sidebar.html:18
+msgid "Categories"
+msgstr "类别"
+
+#: models.py:49
+msgid "Alert"
+msgstr "通知"
+
+#: models.py:50
+msgid "Check this if you want to be alerted when a new response is added."
+msgstr "如果你想当有新回复时获得通知，请选择这个。"
+
+#: models.py:55
+msgid "Name"
+msgstr "名字"
+
+#: models.py:56
+msgid "Enter your first and last name."
+msgstr "输入你的名字"
+
+#: models.py:58
+msgid "Email"
+msgstr ""
+
+#: models.py:59
+msgid "Enter a valid email address."
+msgstr "输入一个正确的Email地址"
+
+#: models.py:144 models.py:163
+msgid "Question"
+msgstr "问题"
+
+#: models.py:145
+msgid "Enter your question or suggestion."
+msgstr "请输入你的提问。"
+
+#: models.py:147
+msgid "Description"
+msgstr "描述"
+
+#: models.py:148
+msgid "Please offer details. Markdown enabled."
+msgstr "请提供具体的信息（内置Markdown标记解析）"
+
+#: models.py:151 models.py:253
+msgid "Status"
+msgstr "状态"
+
+#: models.py:164
+msgid "Questions"
+msgstr "问题"
+
+#: models.py:250 models.py:262
+msgid "Response"
+msgstr "回复"
+
+#: models.py:251
+msgid "Please enter your response. Markdown enabled."
+msgstr "请输入具体的回复信息（内置Markdown标记解析）"
+
+#: models.py:263
+msgid "Responses"
+msgstr "回复"
+
+#: templates/django_knowledge/ask.html:5 templates/django_knowledge/ask.html:9
+#: templates/django_knowledge/list.html:44
+#, fuzzy
+msgid "Ask a Question"
+msgstr "问题"
+
+#: templates/django_knowledge/ask.html:15
+msgid "Please log in to ask a question."
+msgstr ""
+
+#: templates/django_knowledge/form.html:9
+msgid "required"
+msgstr ""
+
+#: templates/django_knowledge/index.html:5
+msgid "Support"
+msgstr ""
+
+#: templates/django_knowledge/index.html:10
+#, python-format
+msgid "Top %(count)s Questions"
+msgstr ""
+
+#: templates/django_knowledge/inner.html:13
+#, fuzzy
+msgid "Start typing your question here."
+msgstr "请输入你的提问。"
+
+#: templates/django_knowledge/list.html:22
+msgid "No results found."
+msgstr ""
+
+#: templates/django_knowledge/list.html:30
+msgid "previous"
+msgstr ""
+
+#: templates/django_knowledge/list.html:33
+#, python-format
+msgid "page %(number)s of %(page)s"
+msgstr ""
+
+#: templates/django_knowledge/list.html:36
+msgid "next"
+msgstr ""
+
+#: templates/django_knowledge/sidebar.html:5
+#, fuzzy
+msgid "My Questions"
+msgstr "问题"
+
+#: templates/django_knowledge/sidebar.html:29
+msgid "Navigate"
+msgstr ""
+
+#: templates/django_knowledge/sidebar.html:33
+#, fuzzy
+msgid "Ask a question or give suggestion."
+msgstr "请输入你的提问。"
+
+#: templates/django_knowledge/sidebar.html:34
+msgid "Return to homepage."
+msgstr ""
+
+#: templates/django_knowledge/thread.html:19
+#: templates/django_knowledge/thread.html:44
+msgid "staff"
+msgstr ""
+
+#: templates/django_knowledge/thread.html:20
+#: templates/django_knowledge/thread.html:45
+msgid "user"
+msgstr ""
+
+#: templates/django_knowledge/thread.html:41
+msgid "accepted answer"
+msgstr ""
+
+#: templates/django_knowledge/thread.html:42
+msgid "poster"
+msgstr ""
+
+#: templates/django_knowledge/thread.html:56
+#, fuzzy
+msgid "No responses yet."
+msgstr "回复"
+
+#: templates/django_knowledge/thread.html:69
+msgid "This question has been closed."
+msgstr ""
+
+#: templates/django_knowledge/thread.html:71
+msgid "Please log in to respond."
+msgstr ""
+
+#: templates/django_knowledge/welcome.html:4
+msgid "Welcome to our Support Center."
+msgstr ""
+
+#: templates/django_knowledge/welcome.html:5
+msgid "Search for answers to your questions below, or ask your own."
+msgstr ""
+
+#: templates/django_knowledge/emails/message.html:6
+#, python-format
+msgid "Hello %(name)s,"
+msgstr ""
+
+#: templates/django_knowledge/emails/message.html:9
+#, python-format
+msgid ""
+"\n"
+"        We just wanted to let you know that a new response has been added to "
+"the question \"%(title)s\". You can visit it here: <a href=\"%(domain)s"
+"%(url)s\">%(domain)s%(url)s</a>.\n"
+"        "
+msgstr ""
+
+#: templates/django_knowledge/emails/message.html:15
+msgid ""
+"You are receiving these messages because you checked the 'alert' box when "
+"you originally posted."
+msgstr ""
+
+#: templates/django_knowledge/emails/message.html:19
+#, python-format
+msgid ""
+"\n"
+"        We just wanted to let you know that a new question has been added: "
+"\"%(title)s\". You can visit it here: <a href=\"%(domain)s%(url)s\">"
+"%(domain)s%(url)s</a>\n"
+"        "
+msgstr ""
+
+#: templates/django_knowledge/emails/message.html:25
+msgid "You are receiving these messages because you are a staff member."
+msgstr ""
+
+#: templates/django_knowledge/emails/message.html:28
+#, python-format
+msgid ""
+"Thank you,\n"
+"    %(name)s team"
+msgstr ""
