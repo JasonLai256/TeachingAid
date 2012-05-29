@@ -12,6 +12,13 @@ from taCore.models import *
 from knowledge.models import Question
 
 
+def get_my_questions(request):
+    if request.user.is_anonymous():
+        return None
+    else:
+        return Question.objects.can_view(request.user)\
+                                    .filter(user=request.user)
+
 
 def index(request):
     if request.user.is_authenticated():
@@ -55,6 +62,7 @@ def main_page(request):
     variables = RequestContext(request, {
             'identity': identity,
             'status': status,
+            'my_questions': get_my_questions(request),
             'questions': questions,
             'count': len(questions),
             })

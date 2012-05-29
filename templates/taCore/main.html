@@ -42,6 +42,18 @@
   <div class="span9">
   
     <p class="lead">欢迎使用师生教学交互系统!</p>
+    {% if my_questions %}
+    <div class="hero-unit">
+      <h3>我的问题:</h3>
+      <hr />
+      <ol>
+        {% for question in my_questions %}
+          <li><a href="{{ question.get_absolute_url }}">{{ question.title }}</a></li>
+	{% endfor %}
+      </ul>
+      </div>
+    {% endif %}
+
     <div class="hero-unit">
       <h3>城院知识堂 最近 {{ count }} 个问题</h3>
       <hr />
